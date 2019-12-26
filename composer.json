@@ -14,16 +14,19 @@
         "php": ">=7.2"
     },
     "require-dev": {
-        "phpunit/phpunit": "^8.0.0"
+        "phpunit/phpunit": "^8.5.0"
     },
     "autoload": {
         "psr-4": {
-            "Dudemelo\\FeatureFlags\\": "src/"
+            "FeatureFlags\\": "src/FeatureFlags"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Dudemelo\\FeaturesFlagsTests\\": "tests/"
+            "FeaturesFlagsTest\\": "tests/FeatureFlags"
         }
+    },
+    "scripts": {
+        "test": "phpunit"
     }
 }
