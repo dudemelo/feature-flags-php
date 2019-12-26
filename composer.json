@@ -1,0 +1,29 @@
+{
+    "name": "dudemelo/feature-flags-php",
+    "description": "Feature Flags",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "José Francisco",
+            "email": "dudemelo@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=7.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Dudemelo\\FeatureFlags\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Dudemelo\\FeaturesFlagsTests\\": "tests/"
+        }
+    }
+}
