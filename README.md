@@ -1,4 +1,4 @@
-# Feature Flags
+# Feature Flags ![Test Build]
 
 Abstractions for different kinds of feature flags.
 
@@ -16,3 +16,4 @@ composer require dudemelo/feature-flags
 
 [Packagist]: https://packagist.org
 [Composer]: https://getcomposer.org
+[Test Build]: https://github.com/dudemelo/feature-flags-php/workflows/test/badge.svg
