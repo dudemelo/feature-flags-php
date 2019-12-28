@@ -16,4 +16,4 @@ composer require dudemelo/feature-flags
 
 [Packagist]: https://packagist.org
 [Composer]: https://getcomposer.org
-[Build Status]: https://github.com/dudemelo/feature-flags-php/workflows/test/badge.svg
+[Build Status]: https://github.com/dudemelo/feature-flags-php/workflows/build/badge.svg
