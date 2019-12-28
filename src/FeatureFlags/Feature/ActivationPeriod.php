@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace FeatureFlags\Feature;
 
 use DateTimeImmutable;
@@ -9,8 +11,19 @@ use FeatureFlags\Exception\InvalidFeatureName;
 
 final class ActivationPeriod implements Feature
 {
+    /**
+     * @var string
+     */
     private $name;
+
+    /**
+     * @var DateTimeInterface
+     */
     private $activation;
+
+    /**
+     * @var DateTimeInterface
+     */
     private $deactivation;
 
     public function __construct(

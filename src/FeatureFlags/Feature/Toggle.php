@@ -1,12 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace FeatureFlags\Feature;
 
 use FeatureFlags\Exception\InvalidFeatureName;
 
 final class Toggle implements Feature
 {
+    /**
+     * @var string
+     */
     private $name;
+
+    /**
+     * @var bool
+     */
     private $enabled;
 
     public function __construct(string $name, bool $enabled)
