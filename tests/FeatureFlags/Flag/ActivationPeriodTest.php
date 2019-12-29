@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
 
 final class ActivationPeriodTest extends TestCase
 {
-    public function testInvalidDeactivationDate() : void
+    public function testActivationLaterThanDeactivation() : void
     {
         $this->expectException(InvalidActivationPeriod::class);
 
@@ -21,7 +21,7 @@ final class ActivationPeriodTest extends TestCase
         );
     }
 
-    public function testEnabled() : void
+    public function testDeactivationInOneSecond() : void
     {
         self::assertTrue(
             (new ActivationPeriod(
@@ -32,7 +32,7 @@ final class ActivationPeriodTest extends TestCase
         );
     }
 
-    public function testDisabled() : void
+    public function testDeactivationOneSecondLater() : void
     {
         self::assertFalse(
             (new ActivationPeriod(

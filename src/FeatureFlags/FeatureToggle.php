@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace FeatureFlags;
 
 use FeatureFlags\Exception\InvalidFeatureName;
+use FeatureFlags\Flag\FeatureFlag;
 
 final class FeatureToggle implements Feature
 {
@@ -18,6 +19,11 @@ final class FeatureToggle implements Feature
      */
     private $enabled;
 
+    /**
+     * @var FeatureFlag[]
+     */
+    private $flags;
+
     public function __construct(string $name, bool $enabled)
     {
         if ($name === '') {
@@ -26,6 +32,7 @@ final class FeatureToggle implements Feature
 
         $this->name = $name;
         $this->enabled = $enabled;
+        $this->flags = [];
     }
 
     public function name(): string
@@ -35,7 +42,11 @@ final class FeatureToggle implements Feature
 
     public function enabled(): bool
     {
-        return $this->enabled;
+        $deactivated = array_filter($this->flags, function (FeatureFlag $flag) {
+            return false === $flag->activated();
+        });
+
+        return $this->enabled && count($deactivated) === 0;
     }
 
     public function enable(): void
@@ -46,5 +57,10 @@ final class FeatureToggle implements Feature
     public function disable(): void
     {
         $this->enabled = false;
+    }
+
+    public function addFlag(FeatureFlag $flag): void
+    {
+        $this->flags[] = $flag;
     }
 }

@@ -10,12 +10,12 @@ use PHPUnit\Framework\TestCase;
 
 final class ActivationDateTest extends TestCase
 {
-    public function testEnabled() : void
+    public function testActivationNow() : void
     {
         self::assertTrue((new ActivationDate(new DateTimeImmutable()))->activated());
     }
 
-    public function testDisabled() : void
+    public function testActivationTomorrow() : void
     {
         self::assertFalse((new ActivationDate(new DateTimeImmutable('+1 day')))->activated());
     }

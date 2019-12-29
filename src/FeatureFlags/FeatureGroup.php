@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace FeatureFlags;
 
-use FeatureFlags\Exception\InvalidFeatureName;
+use FeatureFlags\Flag\FeatureFlag;
 
 final class FeatureGroup implements Feature
 {
@@ -18,10 +18,10 @@ final class FeatureGroup implements Feature
      */
     private $features;
 
-    public function __construct(string $name, array $features)
+    public function __construct(string $name, bool $enabled)
     {
-        $this->default = new FeatureToggle($name, true);
-        $this->features = $features;
+        $this->default = new FeatureToggle($name, $enabled);
+        $this->features = [];
     }
 
     public function name(): string
@@ -54,5 +54,15 @@ final class FeatureGroup implements Feature
         array_map(function (Feature $feature) {
             $feature->disable();
         }, $this->features);
+    }
+
+    public function addFeature(Feature $feature) : void
+    {
+        $this->features[] = $feature;
+    }
+
+    public function addFlag(FeatureFlag $flag): void
+    {
+        $this->default->addFlag($flag);
     }
 }
