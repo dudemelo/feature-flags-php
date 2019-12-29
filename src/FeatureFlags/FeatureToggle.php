@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace FeatureFlags\Feature;
+namespace FeatureFlags;
 
 use FeatureFlags\Exception\InvalidFeatureName;
 
-final class Toggle implements Feature
+final class FeatureToggle implements Feature
 {
     /**
      * @var string
@@ -28,13 +28,23 @@ final class Toggle implements Feature
         $this->enabled = $enabled;
     }
 
-    public function name() : string
+    public function name(): string
     {
         return $this->name;
     }
 
-    public function enabled() : bool
+    public function enabled(): bool
     {
         return $this->enabled;
+    }
+
+    public function enable(): void
+    {
+        $this->enabled = true;
+    }
+
+    public function disable(): void
+    {
+        $this->enabled = false;
     }
 }

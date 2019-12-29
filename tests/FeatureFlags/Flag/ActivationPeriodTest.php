@@ -2,33 +2,20 @@
 
 declare(strict_types=1);
 
-namespace FeatureFlagsTest\Feature;
+namespace FeatureFlagsTest\Flag;
 
 use DateTimeImmutable;
 use FeatureFlags\Exception\InvalidActivationPeriod;
-use FeatureFlags\Exception\InvalidFeatureName;
-use FeatureFlags\Feature\ActivationPeriod;
+use FeatureFlags\Flag\ActivationPeriod;
 use PHPUnit\Framework\TestCase;
 
 final class ActivationPeriodTest extends TestCase
 {
-    public function testInvalidName() : void
-    {
-        $this->expectException(InvalidFeatureName::class);
-
-        new ActivationPeriod(
-            '',
-            new DateTimeImmutable(),
-            new DateTimeImmutable()
-        );
-    }
-
     public function testInvalidDeactivationDate() : void
     {
         $this->expectException(InvalidActivationPeriod::class);
 
         new ActivationPeriod(
-            'invalid-deactivation-date-feature',
             new DateTimeImmutable(),
             new DateTimeImmutable('-1 seconds')
         );
@@ -38,11 +25,10 @@ final class ActivationPeriodTest extends TestCase
     {
         self::assertTrue(
             (new ActivationPeriod(
-                'enabled-feature',
                 new DateTimeImmutable('-1 day'),
                 new DateTimeImmutable('+1 second')
             ))
-                ->enabled()
+                ->activated()
         );
     }
 
@@ -50,11 +36,10 @@ final class ActivationPeriodTest extends TestCase
     {
         self::assertFalse(
             (new ActivationPeriod(
-                'disabled-feature',
                 new DateTimeImmutable('-1 day'),
                 new DateTimeImmutable('-1 second')
             ))
-                ->enabled()
+                ->activated()
         );
     }
 }
